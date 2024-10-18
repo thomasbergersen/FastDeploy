@@ -82,6 +82,7 @@ setup_configs["WITH_ASCEND"] = os.getenv("WITH_ASCEND", "OFF")
 setup_configs["WITH_KUNLUNXIN"] = os.getenv("WITH_KUNLUNXIN", "OFF")
 setup_configs["RKNN2_TARGET_SOC"] = os.getenv("RKNN2_TARGET_SOC", "")
 # Custom deps settings
+setup_configs["OPENVINO_DIRECTORY"] = os.getenv("OPENVINO_DIRECTORY", "")
 setup_configs["TRT_DIRECTORY"] = os.getenv("TRT_DIRECTORY", "UNDEFINED")
 setup_configs["CUDA_DIRECTORY"] = os.getenv("CUDA_DIRECTORY", "/usr/local/cuda")
 setup_configs["OPENCV_DIRECTORY"] = os.getenv("OPENCV_DIRECTORY", "")
