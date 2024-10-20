@@ -1,8 +1,9 @@
-wheel
+# wheel
 requests
 tqdm
 numpy
-opencv-python
-fastdeploy-tools>=0.0.5
+opencv-python; sys_platform == 'windows' or sys_platform == 'darwin'
+opencv-python-headless; sys_platform == 'linux'
+# fastdeploy-tools>=0.0.5
 pyyaml
-fastapi
+# fastapi
