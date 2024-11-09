@@ -32,7 +32,7 @@ function(get_openvino_libs OPENVINO_RUNTIME_DIR)
   find_library(OPENVINO_LIB openvino PATHS ${OPENVINO_RUNTIME_DIR}/lib/ ${OPENVINO_RUNTIME_DIR}/lib/intel64 NO_DEFAULT_PATH)
   list(APPEND LIB_LIST ${OPENVINO_LIB})
 
-  set(TBB_DIR ${OPENVINO_RUNTIME_DIR}/3rdparty/tbb/cmake)
+  set(TBB_DIR ${OPENVINO_RUNTIME_DIR}/3rdparty/tbb/lib/cmake)
   find_package(TBB PATHS ${TBB_DIR})
   if (TBB_FOUND)
     list(APPEND LIB_LIST ${TBB_IMPORTED_TARGETS})
