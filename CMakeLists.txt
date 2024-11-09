@@ -406,9 +406,10 @@ if(ENABLE_TRT_BACKEND)
     if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/third_libs/install/tensorrt/lib")
       file(REMOVE_RECURSE "${CMAKE_CURRENT_BINARY_DIR}/third_libs/install/tensorrt/lib")
     endif()
-    
+
     if (NOT Python_EXECUTABLE)
-      find_package(Python COMPONENTS Interpreter Development REQUIRED)
+      find_package(PythonInterp ${PY_VERSION} REQUIRED)
+      find_package(PythonLibs ${PY_VERSION})
     endif()
 
     message(STATUS "Copying ${TRT_DIRECTORY}/lib to ${CMAKE_CURRENT_BINARY_DIR}/third_libs/install/tensorrt/lib ...")
