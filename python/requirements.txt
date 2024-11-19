@@ -2,7 +2,7 @@
 requests
 tqdm
 numpy
-opencv-python; sys_platform == 'windows' or sys_platform == 'darwin'
+opencv-python; sys_platform == "win32" or sys_platform == "darwin"
 opencv-python-headless; sys_platform == 'linux'
 # fastdeploy-tools>=0.0.5
 pyyaml
