@@ -27,31 +27,33 @@ if (OPENVINO_DIRECTORY)
 else()
   set(OPENVINO_PROJECT "extern_openvino")
 
-  set(OPENVINO_VERSION "2022.2.0.dev20220829")
-  set(OPENVINO_URL_PREFIX "https://bj.bcebos.com/fastdeploy/third_libs/")
+  set(OPENVINO_VERSION "2024.4.0.16579.c3152d32c9c_x86_64")
 
   set(COMPRESSED_SUFFIX ".tgz")
   if(WIN32)
+    set(OPENVINO_URL_PREFIX "https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.4/windows/")
     set(OPENVINO_FILENAME "w_openvino_toolkit_windows_${OPENVINO_VERSION}")
     set(COMPRESSED_SUFFIX ".zip")
     if(NOT CMAKE_CL_64)
       message(FATAL_ERROR "FastDeploy cannot ENABLE_OPENVINO_BACKEND in win32 now.")
     endif()
   elseif(APPLE)
+    set(OPENVINO_URL_PREFIX "https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.4/macos/")
     if(CURRENT_OSX_ARCH MATCHES "arm64")
       message("Cannot compile with openvino while in osx arm64 platform right now")
     else()
-      set(OPENVINO_FILENAME "m_openvino_toolkit_osx_${OPENVINO_VERSION}")
+      set(OPENVINO_FILENAME "m_openvino_toolkit_macos_12_6_${OPENVINO_VERSION}")
     endif()
   else()
+    set(OPENVINO_URL_PREFIX "https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.4/linux/")
     if(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "aarch64")
       message("Cannot compile with openvino while in linux-aarch64 platform")
     else()
-      set(OPENVINO_VERSION "dev.2023.03.2")
+      # set(OPENVINO_VERSION "dev.2023.03.2")
       if(NEED_ABI0)
         set(OPENVINO_FILENAME "openvino-linux-x64-20230302-abi0")
       else()
-        set(OPENVINO_FILENAME "openvino-linux-x64-20230302")
+        set(OPENVINO_FILENAME "l_openvino_toolkit_ubuntu22_${OPENVINO_VERSION}")
       endif()
     endif()
   endif()
@@ -62,7 +64,7 @@ else()
       ${THIRD_PARTY_PATH}/install)
 
   if(EXISTS ${THIRD_PARTY_PATH}/install/openvino)
-    file(REMOVE_RECURSE ${THIRD_PARTY_PATH}/install/openvino) 
+    file(REMOVE_RECURSE ${THIRD_PARTY_PATH}/install/openvino)
   endif()
 
   file(RENAME ${THIRD_PARTY_PATH}/install/${OPENVINO_FILENAME} ${THIRD_PARTY_PATH}/install/openvino)
@@ -73,7 +75,7 @@ else()
     "${OPENVINO_INSTALL_DIR}/include"
     "${OPENVINO_INSTALL_DIR}/include/ie"
     CACHE PATH "openvino install include directory." FORCE)
-    
+
   set(OPENVINO_LIB_DIR
     "${OPENVINO_INSTALL_DIR}/lib/"
     "${OPENVINO_INSTALL_DIR}/3rdparty/tbb/lib/"
